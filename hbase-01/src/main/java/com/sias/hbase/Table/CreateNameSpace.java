@@ -86,7 +86,7 @@ public class CreateNameSpace {
     /*3.演示上面方法执行*/
     public static void main(String[] args) throws IOException {
 //        createNameSpace("sias");
-        createTable("sias","student1","vds");
+        createTable("sias","student5667","vds");
         System.out.println("其他代码");
     }
 }

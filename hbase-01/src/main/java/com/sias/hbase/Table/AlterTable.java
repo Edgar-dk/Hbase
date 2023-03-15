@@ -45,7 +45,7 @@ public class AlterTable {
 
 
     public static void main(String[] args) throws IOException {
-        AlterTable("sias","student1","vds",6);
+        AlterTable("default","stu1","info",6);
         System.out.println("修改成功");
         TestApi.close();
     }

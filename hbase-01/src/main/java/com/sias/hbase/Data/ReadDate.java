@@ -49,7 +49,7 @@ public class ReadDate {
         TestApi.close();
     }
     public static void main(String[] args) throws IOException {
-        readData("default","stu1","1001","eo","name");
+        readData("default","stu1","1001","info","name");
         System.out.println("数据查询成功");
     }
 }

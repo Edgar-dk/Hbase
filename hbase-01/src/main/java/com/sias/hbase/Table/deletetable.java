@@ -22,17 +22,14 @@ public class deletetable {
             System.out.println("表格不存在，不能删除");
             return false;
         }
-
         /*2.在去删除之前，需要把表格弃用*/
         admin.disableTable(TableName.valueOf(nameSpace,nameTable));
         admin.deleteTable(TableName.valueOf(nameSpace,nameTable));
-
         TestApi.close();
         return true;
     }
-
     public static void main(String[] args) throws IOException {
-        deleteTable("sias","student1");
+        deleteTable("sias","student5667");
         System.out.println("删除表格成功");
     }
 }

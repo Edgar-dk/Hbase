@@ -47,7 +47,7 @@ public class ScanRead {
     }
     public static void main(String[] args) throws IOException {
         ScanRead("default",
-                "stu",
+                "stu1",
                 "1001",
                 "1003");
     }

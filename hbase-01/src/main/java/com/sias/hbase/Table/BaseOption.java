@@ -1,9 +1,7 @@
 package com.sias.hbase.Table;
 
 import org.apache.hadoop.hbase.TableName;
-import org.apache.hadoop.hbase.client.Admin;
-import org.apache.hadoop.hbase.client.Connection;
-import org.apache.hadoop.hbase.client.ConnectionFactory;
+import org.apache.hadoop.hbase.client.*;
 
 import java.io.IOException;
 
@@ -12,7 +10,7 @@ import java.io.IOException;
  * @create 2022-09-26 21:09
  * @faction:
  */
-public class TestApi {
+public class BaseOption {
     public static Connection connection = null;
     public static Admin admin = null;
 
@@ -53,27 +51,41 @@ public class TestApi {
         }
     }
 
-    /*3.查看表是否存在*/
-    public static boolean tableExec(String nameSpace,String tableName) throws IOException {
-        boolean exit = admin.tableExists(TableName.valueOf(nameSpace,tableName));
-        return exit;
+    /*3.表失效*/
+    public static boolean DisTable(String nameSpace,String tableName) throws IOException {
+        /*1.不存在的话，返回一个false
+         *   存在的话，在往下面执行*/
+        if (!TestApi.tableExec(nameSpace,tableName)){
+            System.out.println("表格不存在，不能删除");
+            return false;
+        }
+        admin.disableTable(TableName.valueOf(nameSpace,tableName));
+        return true;
+    }
+    /*4.表有效*/
+    public static boolean EnbTable(String nameSpace,String tableName) throws IOException {
+        /*1.不存在的话，返回一个false
+         *   存在的话，在往下面执行*/
+        if (!TestApi.tableExec(nameSpace,tableName)){
+            System.out.println("表格不存在，不能删除");
+            return false;
+        }
+        admin.enableTable(TableName.valueOf(nameSpace,tableName));
+        return true;
     }
 
-    /*4.列出所有的表*/
-    public static TableName[] listTable() throws IOException {
-        TableName[] tableNames = admin.listTableNames();
-        return tableNames;
-    }
     /*4.执行，查看表是否存在*/
     public static void main(String[] args) throws IOException {
-        /*01.查看表是否存在*/
-//        System.out.println(tableExec("default","stu1") + "成功");
+        /*01.失效*/
+        /*boolean b = BaseOption.DisTable("default", "stu1");
+        System.out.println(b);*/
 
-        /*02.列出所有的表*/
-        TableName[] tableNames = listTable();
-        for (TableName tableName : tableNames) {
-            System.out.println(tableName);
-        }
+        /*02.有效*/
+        boolean b1 = BaseOption.EnbTable("default", "stu1");
+        System.out.println(b1);
+        /*03.获取表的描述信息*/
+//        TableDescriptor stu1 = BaseOption.descriptor("stu1","info");
+//        System.out.println(stu1);
         close();
     }
 
