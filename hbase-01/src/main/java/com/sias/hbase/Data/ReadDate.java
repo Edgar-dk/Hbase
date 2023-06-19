@@ -44,12 +44,14 @@ public class ReadDate {
         *   然后在把复制过来的数据打印出来*/
         for (Cell cell : cells) {
             String values = new String(CellUtil.cloneValue(cell));
+            System.out.println("输出数据");
+            System.out.println(cell);
             System.out.println(values);
         }
         TestApi.close();
     }
     public static void main(String[] args) throws IOException {
-        readData("default","stu1","1001","info","name");
+        readData("default","zhangsan","1003","info","addr");
         System.out.println("数据查询成功");
     }
 }

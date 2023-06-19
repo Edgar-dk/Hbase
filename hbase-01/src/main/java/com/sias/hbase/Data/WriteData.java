@@ -36,7 +36,7 @@ public class WriteData {
     }
 
     public static void main(String[] args) throws IOException {
-        WriteData.insertData("default","stu1","1001","info","name","liu");
+        WriteData.insertData("default","zhangsan","1001","other","email","");
         System.out.println("插入数据成功");
     }
 }
